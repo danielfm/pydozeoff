@@ -31,8 +31,8 @@ TEMPLATE_ENGINE_EXTENSIONS = [
     "pydoze.template.ext.code_style",
 ]
 
-TEMPLATE_ENGINE_FILTERS = []
-TEMPLATE_ENGINE_TESTS = []
+TEMPLATE_ENGINE_FILTERS = {}
+TEMPLATE_ENGINE_TESTS = {}
 
 # Slides
 SLIDES = ()

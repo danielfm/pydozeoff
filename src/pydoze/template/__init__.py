@@ -22,12 +22,13 @@ class Jinja2TemplateEngine(object):
             self.initialized = True
             self.env =  Environment(
                 loader      = FileSystemLoader(settings["ROOT_DIR"]),
-                auto_reload = settings["DEBUG_MODE"],
                 extensions  = settings["TEMPLATE_ENGINE_EXTENSIONS"],
+                auto_reload = settings["DEBUG_MODE"],
             )
             self.env.globals = settings
-            self.env.filters = settings["TEMPLATE_ENGINE_FILTERS"]
-            self.env.tests   = settings["TEMPLATE_ENGINE_TESTS"]
+
+            self.env.filters.update(settings["TEMPLATE_ENGINE_FILTERS"])
+            self.env.tests.update(settings["TEMPLATE_ENGINE_TESTS"])
 
     def render(self, template_file, context={}):
         """Renders a template.

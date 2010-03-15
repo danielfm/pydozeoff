@@ -250,13 +250,46 @@ information)::
         "my.custom.extension.here",
     ]
 
-    TEMPLATE_ENGINE_FILTERS = [
-        "my.custom.filter.here",
-    ]
+    TEMPLATE_ENGINE_FILTERS = {
+        "my_filter": my_filter_function, # In your slide: {{ VALUE|my_filter }}
+    }
 
-    TEMPLATE_ENGINE_TESTS = [
-        "my.custom.test.here",
-    ]
+    TEMPLATE_ENGINE_TESTS = {
+        "my_test": my_test_function,     # In your slide: {{ VALUE is my_test }}
+    }
+
+
+Template inheritance
+''''''''''''''''''''
+
+`Jinja2`_ supports template inheritance, which allows you to build a base
+"skeleton" template that contains all the common elements of your slides and
+defines blocks that child templates can override.
+
+For example, create a file ``themes/slide.html``::
+
+    <h1>{% block title %}{% endblock %}</h1>
+
+    {% block content %}{% endblock %}
+
+    <div class="handout">
+        {% block handout %}{% endblock %}
+    </div>
+
+
+In your slides::
+
+    {% extends "themes/slide.html" %}
+
+    {% block title %}Slide title{% endblock %}
+
+    {% block content %}
+        Slide content
+    {% endblock %}
+
+    {% block handout %}
+        Slide notes
+    {% endblock %}
 
 
 Changing the default directory structure
@@ -272,7 +305,7 @@ Modify the following settings to change the way a presentation is organized::
 Future plans
 ------------
 
-I don't have any.
+I don't have any. Sorry.
 
 
 .. _Destaquenet Technology Solutions: http://www.destaquenet.com/

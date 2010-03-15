@@ -27,8 +27,8 @@ SYNTAX_HIGHLIGHT_OPTIONS = {
 
 # Template engine extensions, filters and tests
 TEMPLATE_ENGINE_EXTENSIONS = [
-    "pydoze.template.ext.code",
-    "pydoze.template.ext.code_style",
+    "pydozeoff.template.ext.code",
+    "pydozeoff.template.ext.code_style",
 ]
 
 TEMPLATE_ENGINE_FILTERS = {}

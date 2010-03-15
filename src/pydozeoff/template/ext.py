@@ -7,8 +7,8 @@ Provides useful template engine extensions.
 from jinja2 import nodes
 from jinja2.ext import Extension
 
-from pydoze.template import highlight
-from pydoze.conf import settings
+from pydozeoff.template import highlight
+from pydozeoff.conf import settings
 
 
 class CodeHighlightExtension(Extension):

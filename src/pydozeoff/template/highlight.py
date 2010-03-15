@@ -9,7 +9,7 @@ from pygments.lexers import get_lexer_by_name, PythonLexer
 from pygments.formatters import HtmlFormatter
 from pygments.styles import get_style_by_name
 
-from pydoze.conf import settings
+from pydozeoff.conf import settings
 
 
 def get_style_defs(name="default"):

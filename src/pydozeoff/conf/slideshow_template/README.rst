@@ -1,7 +1,7 @@
-pydoze
-======
+pydozeoff
+=========
 
-pydoze is a web application written in `Python`_ that generates web-based
+pydozeoff is a web application written in `Python`_ that generates web-based
 presentations.
 
 As a Linux user, I don't have access to so called "professional" presentation
@@ -13,8 +13,8 @@ After a little research, I came across a wonderful tool called `S5`_. It was a
 perfect fit, except for the one-big-fat-presentation-html thing and the lack of
 syntax highlighting.
 
-This is what I'm trying to solve with this project. So, in other words, pydoze
-is just a web-based presentation engine for programmers.
+This is what I'm trying to solve with this project. So, in other words,
+pydozeoff is just a web-based presentation engine for programmers.
 
 
 :Author: Daniel Fernandes Martins <daniel@destaquenet.com>
@@ -45,15 +45,16 @@ Dependencies
 Usage
 -----
 
-First, run ``easy_install -U pydoze`` to install the latest stable release.
+First, run ``easy_install -U pydozepydozeoff`` to install the latest stable
+release.
 
 
 Starting a presentation
 ```````````````````````
 
-Run ``pydoze -c "<PRESENTATION_NAME>"`` to start a new presentation. This will
-create a ``presentation_name`` folder in the working directory. This is what
-you'll find there:
+Run ``pydozeoff -c "<PRESENTATION_NAME>"`` to start a new presentation. This
+will create a ``presentation_name`` folder in the working directory. This is
+what you'll find there:
 
 media/
    All files placed here are served by the web server under the ``/media/``
@@ -76,35 +77,35 @@ slideshow.py
 Serving a presentation
 ``````````````````````
 
-Use the ``pydoze`` command to serve the presentation::
+Use the ``pydozeoff`` command to serve the presentation::
 
     $ cd my_presentation
-    $ pydoze
+    $ pydozeoff
 
 
 This command starts a web server which can be accessed at http://localhost:8080/.
 Use ``-p <PORT>`` if you want to use a different port number::
 
-    $ pydoze -p 9090
+    $ pydozeoff -p 9090
 
 
 To start the presentation in debug mode::
 
-    $ pydoze -d
+    $ pydozeoff -d
 
 
 This allows you to modify presentation's settings - and slides - and see the
 results right away, without the need to restart the web server. It also prints
 full stacktrace messages in case of errors.
 
-All the previous commands will only work if you run ``pydoze`` from the
+All the previous commands will only work if you run ``pydozeoff`` from the
 presentation root directory. Use ``-s <DIRECTORY>`` if you need to start
-``pydoze`` from a different directory::
+``pydozeoff`` from a different directory::
 
-    $ pydoze -s /home/user/presentation/
+    $ pydozeoff -s /home/user/presentation/
 
 
-Run ``pydoze -h`` to see all options available.
+Run ``pydozeoff -h`` to see all options available.
 
 
 Configuring a presentation
@@ -114,9 +115,9 @@ The file ``slideshow.py`` contains detailed instructions on how to configure
 the presentation, but here's a common workflow::
 
     $ cd /my/workspace
-    $ pydoze -c my_presentation
+    $ pydozeoff -c my_presentation
     $ cd my_presentation
-    $ pydoze -dp 8080
+    $ pydozeoff -dp 8080
 
 
 Point the browser to http://localhost:8080 to see a plain HTML document. It
@@ -244,19 +245,52 @@ filters and tests (see
 information)::
 
     TEMPLATE_ENGINE_EXTENSIONS = [
-        "pydoze.template.ext.code",       # Provides: {% code %}
-        "pydoze.template.ext.code_style", # Provides: {% code_highlight_css %}
+        "pydozeoff.template.ext.code",       # Provides: {% code %}
+        "pydozeoff.template.ext.code_style", # Provides: {% code_highlight_css %}
 
         "my.custom.extension.here",
     ]
 
-    TEMPLATE_ENGINE_FILTERS = [
-        "my.custom.filter.here",
-    ]
+    TEMPLATE_ENGINE_FILTERS = {
+        "my_filter": my_filter_function, # In your slide: {{ VALUE|my_filter }}
+    }
 
-    TEMPLATE_ENGINE_TESTS = [
-        "my.custom.test.here",
-    ]
+    TEMPLATE_ENGINE_TESTS = {
+        "my_test": my_test_function,     # In your slide: {{ VALUE is my_test }}
+    }
+
+
+Template inheritance
+''''''''''''''''''''
+
+`Jinja2`_ supports template inheritance, which allows you to build a base
+"skeleton" template that contains all the common elements of your slides and
+defines blocks that child templates can override.
+
+For example, create a file ``themes/slide.html``::
+
+    <h1>{% block title %}{% endblock %}</h1>
+
+    {% block content %}{% endblock %}
+
+    <div class="handout">
+        {% block handout %}{% endblock %}
+    </div>
+
+
+In your slides::
+
+    {% extends "themes/slide.html" %}
+
+    {% block title %}Slide title{% endblock %}
+
+    {% block content %}
+        Slide content
+    {% endblock %}
+
+    {% block handout %}
+        Slide notes
+    {% endblock %}
 
 
 Changing the default directory structure
@@ -272,7 +306,7 @@ Modify the following settings to change the way a presentation is organized::
 Future plans
 ------------
 
-I don't have any.
+I don't have any. Sorry.
 
 
 .. _Destaquenet Technology Solutions: http://www.destaquenet.com/

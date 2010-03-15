@@ -6,7 +6,7 @@ Provides a template renderer implementation.
 
 from jinja2 import Environment, Template, FileSystemLoader
 
-from pydoze.conf import settings
+from pydozeoff.conf import settings
 
 
 class Jinja2TemplateEngine(object):

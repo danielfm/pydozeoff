@@ -6,8 +6,8 @@ Provides classes to handle slideshow settings.
 
 import os
 
-import pydoze
-from pydoze.conf import global_settings
+import pydozeoff
+from pydozeoff.conf import global_settings
 
 # Slideshow settings
 import slideshow as _slideshow_settings
@@ -40,9 +40,9 @@ class LazySettings(dict):
     def _copy_env(self):
         """Copies important environment variables to this settings object.
         """
-        self["VERSION"] = pydoze.__version__
-        self["ROOT_DIR"]   = os.environ.get("PYDOZE_ROOT_DIR", ".")
-        self["DEBUG_MODE"] = bool(os.environ.get("PYDOZE_DEBUG_MODE", ""))
+        self["VERSION"] = pydozeoff.__version__
+        self["ROOT_DIR"]   = os.environ.get("PYDOZEOFF_ROOT_DIR", ".")
+        self["DEBUG_MODE"] = bool(os.environ.get("PYDOZEOFF_DEBUG_MODE", ""))
 
     def __getitem__(self, item):
         """Returns the corresponding setting, and initialize this object if

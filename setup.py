@@ -7,12 +7,12 @@ ez_setup.use_setuptools()
 from setuptools import setup, find_packages
 
 setup(
-    name = "pydoze",
+    name = "pydozeoff",
     version = "0.1.0",
     author = "Daniel Fernandes Martins",
     author_email = 'daniel@destaquenet.com',
-    url = "http://github.com/danielfm/pydoze",
-    description = "pydoze is a web-based presentation engine for programmers",
+    url = "http://github.com/danielfm/pydozeoff",
+    description = "pydozeoff is a web-based presentation engine for programmers",
     license = "BSD",
     classifiers = [
         "Development Status :: 3 - Alpha",
@@ -34,7 +34,7 @@ setup(
     install_requires = ["bottle>=0.6", "Jinja2>=2.3", "Pygments>=1.3"],
 
     # Executable scripts
-    scripts = ["bin/pydoze"],
+    scripts = ["bin/pydozeoff"],
 
     # Source code structure
     packages = find_packages("src"),
@@ -43,7 +43,7 @@ setup(
 
     long_description = 
 """
-pydoze is a web application written in `Python`_ that generates web-based
+pydozeoff is a web application written in `Python`_ that generates web-based
 presentations.
 
 As a Linux user, I don't have access to so called "professional" presentation

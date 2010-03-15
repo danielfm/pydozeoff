@@ -6,8 +6,8 @@ Provides a web interface to generate and serve a presentation.
 
 from bottle import route, send_file, run, debug
 
-from pydoze.template import template_engine
-from pydoze.conf import settings
+from pydozeoff.template import template_engine
+from pydozeoff.conf import settings
 
 
 def start(port=8080, debug_mode=False):

@@ -5,13 +5,13 @@ Slideshow settings file.
 """
 
 # Slide definition shortcuts. See "SLIDES" below for more information
-from pydoze.conf.slide import *
+from pydozeoff.conf.slide import *
 
 
 # If you want to see all settings available and their default values, please
 # import the "global_settings" module, like this:
 #
-#     >>> from pydoze.conf import global_settings
+#     >>> from pydozeoff.conf import global_settings
 #     >>> dir(global_settings)
 #     ...list of settings...
 #     >>> global_settings.DEFAULT_VIEW

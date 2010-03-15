@@ -1,7 +1,7 @@
 #-*- coding:utf-8 -*-
 
 """
-pydoze root module.
+pydozeoff root module.
 """
 
 import os
@@ -40,10 +40,10 @@ def _serve_presentation(parser, options):
 
     # Prepare environment
     sys.path.append(options.slideshow_path)
-    os.environ["PYDOZE_ROOT_DIR"]   = options.slideshow_path
-    os.environ["PYDOZE_DEBUG_MODE"] = ["","1"][options.debug]
+    os.environ["PYDOZEOFF_ROOT_DIR"]   = options.slideshow_path
+    os.environ["PYDOZEOFF_DEBUG_MODE"] = ["","1"][options.debug]
 
-    from pydoze import webapp
+    from pydozeoff import webapp
     webapp.start(port=options.server_port, debug_mode=options.debug)
 
 

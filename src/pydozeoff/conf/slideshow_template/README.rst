@@ -45,7 +45,7 @@ Dependencies
 Usage
 -----
 
-First, run ``easy_install -U pydozepydozeoff`` to install the latest stable
+First, run ``easy_install -U pydozeoff`` to install the latest stable
 release.
 
 
@@ -58,7 +58,7 @@ what you'll find there:
 
 media/
    All files placed here are served by the web server under the ``/media/``
-   namespace. For example, you can access an ``company_logo.png`` at
+   namespace. For example, you can access ``company_logo.png`` at
    http://host:port/media/company_logo.png.
 
 slides/
@@ -67,8 +67,7 @@ slides/
 
 themes/
    This is where you put the theme used by your presentation. This directory
-   also holds a file named ``template.html``, which provides a `S5`_
-   presentation skeleton.
+   also holds a HTML template ready for use with `S5`_.
 
 slideshow.py
    Slideshow configuration module.
@@ -165,10 +164,10 @@ next slides.
 
 
 Fine tunning a presentation
-```````````````````````````
+---------------------------
 
 S5 configuration parameters
-'''''''''''''''''''''''''''
+```````````````````````````
 
 `S5`_ provides a couple of configuration parameters which you can change in
 ``slideshow.py``::
@@ -178,7 +177,7 @@ S5 configuration parameters
 
 
 Syntax highlighting
-'''''''''''''''''''
+```````````````````
 
 To highlight source code snippets in your slides, just put the code inside a
 ``{% code "LANGUAGE" %}`` block::
@@ -203,7 +202,7 @@ for more information)::
 
 
 Dividing slides into sections
-'''''''''''''''''''''''''''''
+`````````````````````````````
 
 For medium to large-sized presentations, you might want to separate slides
 into sections::
@@ -220,7 +219,7 @@ Feel free to nest as many sections as you want.
 
 
 Passing extra variables to a slide
-''''''''''''''''''''''''''''''''''
+``````````````````````````````````
 
 Sometimes you don't want to hardcode data inside a slide. In those cases, just
 pass them as keyword arguments to the slide definition::
@@ -237,7 +236,7 @@ that::
 
 
 Extending the template engine
-'''''''''''''''''''''''''''''
+`````````````````````````````
 
 `Jinja2`_ allows you to extend the template engine with custom extensions,
 filters and tests (see
@@ -261,7 +260,7 @@ information)::
 
 
 Template inheritance
-''''''''''''''''''''
+````````````````````
 
 `Jinja2`_ supports template inheritance, which allows you to build a base
 "skeleton" template that contains all the common elements of your slides and
@@ -294,7 +293,7 @@ In your slides::
 
 
 Changing the default directory structure
-''''''''''''''''''''''''''''''''''''''''
+````````````````````````````````````````
 
 Modify the following settings to change the way a presentation is organized::
 

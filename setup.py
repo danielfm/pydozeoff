@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "pydozeoff",
-    version = "0.1.0",
+    version = "0.1.1",
     author = "Daniel Fernandes Martins",
     author_email = 'daniel@destaquenet.com',
     url = "http://github.com/danielfm/pydozeoff",

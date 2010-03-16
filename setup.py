@@ -12,8 +12,9 @@ setup(
     author = "Daniel Fernandes Martins",
     author_email = 'daniel@destaquenet.com',
     url = "http://github.com/danielfm/pydozeoff",
-    description = "pydozeoff is a web-based presentation engine for programmers",
+    description = "Web-based presentation engine for programmers",
     license = "BSD",
+    keywords = "web presentation slideshow talk engine python s5",
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Environment :: Console",
@@ -22,6 +23,7 @@ setup(
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
         "Operating System :: OS Independent",
+        "Programming Language :: Python",
         "Programming Language :: Python :: 2.5",
         "Topic :: Communications",
         "Topic :: Multimedia :: Graphics :: Presentation",
@@ -34,18 +36,20 @@ setup(
     install_requires = ["bottle>=0.6", "Jinja2>=2.3", "Pygments>=1.3"],
 
     # Executable scripts
-    scripts = ["bin/pydozeoff"],
+    entry_points = {
+        'console_scripts': [
+            "pydozeoff = pydozeoff:main"
+        ],
+    },
 
     # Source code structure
     packages = find_packages("src"),
     package_dir = {"": "src"},
+    include_package_data = True,
     zip_safe = False,
 
     long_description = 
 """
-pydozeoff is a web application written in `Python`_ that generates web-based
-presentations.
-
 As a Linux user, I don't have access to so called "professional" presentation
 softwares such as Apple Keynote or MS PowerPoint. OpenOffice Impress used to be
 my first choice, but I gave up using it since it's a memory/processor hog for

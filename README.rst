@@ -1,9 +1,6 @@
 pydozeoff
 =========
 
-pydozeoff is a web application written in `Python`_ that generates web-based
-presentations.
-
 As a Linux user, I don't have access to so called "professional" presentation
 softwares such as Apple Keynote or MS PowerPoint. OpenOffice Impress used to be
 my first choice, but I gave up using it since it's a memory/processor hog for
@@ -14,7 +11,7 @@ perfect fit, except for the one-big-fat-presentation-html thing and the lack of
 syntax highlighting.
 
 This is what I'm trying to solve with this project. So, in other words,
-pydozeoff is just a web-based presentation engine for programmers.
+pydozeoff is a web-based presentation engine for programmers.
 
 
 :Author: Daniel Fernandes Martins <daniel@destaquenet.com>

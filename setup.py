@@ -46,6 +46,7 @@ setup(
     packages = find_packages("src"),
     package_dir = {"": "src"},
     include_package_data = True,
+    exclude_package_data = {"": ["*.pyc"]},
     zip_safe = False,
 
     long_description = 

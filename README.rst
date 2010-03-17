@@ -91,8 +91,8 @@ To start the presentation in debug mode::
 
 
 This allows you to modify presentation's settings - and slides - and see the
-results right away, without the need to restart the web server. It also prints
-full stacktrace messages in case of errors.
+results right away, without the need to restart the web server manually. It
+also prints full stacktrace messages in case of errors.
 
 All the previous commands will only work if you run ``pydozeoff`` from the
 presentation root directory. Use ``-s <DIRECTORY>`` if you need to start
@@ -201,8 +201,8 @@ for more information)::
 Dividing slides into sections
 `````````````````````````````
 
-For medium to large-sized presentations, you might want to separate slides
-into sections::
+For medium to large-sized presentations, you might want to split slides into
+sections::
 
     SLIDES = slides(
         simple("first.html"),       # Points to: slides/first.html
@@ -255,6 +255,9 @@ information)::
         "my_test": my_test_function,     # In your slide: {{ VALUE is my_test }}
     }
 
+
+The `built-in filters and tests <http://jinja.pocoo.org/2/documentation/templates#list-of-builtin-filters>`_
+also work as expected.
 
 Template inheritance
 ````````````````````

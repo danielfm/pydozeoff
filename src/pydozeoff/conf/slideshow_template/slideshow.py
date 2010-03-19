@@ -28,11 +28,11 @@ LOCATION = u"Location"
 DATE     = u"yyyy-mm-dd"
 
 # Feel free to add your own settings
-MY_SETTING = "Some text here!"
+MY_SETTING = u"Some text here!"
 
 # Copy a S5 theme to the "themes" directory and change this setting accordingly
 # Visit http://meyerweb.com/eric/tools/s5/ for more information
-THEME = "some_theme"
+THEME = "theme_name"
 
 # Presentation slides
 SLIDES = slides(
@@ -55,7 +55,7 @@ SLIDES = slides(
     # You can also separate your slides into subdirectories, to keep them
     # organized. Feel free to nest as many sections as you want
     # section("subsection",
-    #     code ("first.html"),
-    #     image("second.html"),
+    #     code ("first.html"),  # Points to: slides/subsection/first.html
+    #     image("second.html"), # Points to: slides/subsection/second.html
     # ),
 )

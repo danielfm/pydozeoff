@@ -27,7 +27,7 @@ Features
 * Play nice with version control systems
 * Configurable slide directory structure with support for nested subdirectories
 * Uses `S5`_ template model by default, but you can easily make it compatible
-  with virtually any web-based presentation engine
+  with virtually any HTML-based presentation engine
 
 
 Dependencies
@@ -54,8 +54,8 @@ will create a ``presentation_name`` folder in the working directory. This is
 what you'll find there:
 
 media/
-   All files placed here are served by the web server under the ``/media/``
-   namespace. For example, you can access ``company_logo.png`` at
+   All files placed here are served by the web server under ``/media/``. For
+   example, you can access ``media/company_logo.png`` at
    http://host:port/media/company_logo.png.
 
 slides/
@@ -113,7 +113,7 @@ the presentation, but here's a common workflow::
     $ cd /my/workspace
     $ pydozeoff -c my_presentation
     $ cd my_presentation
-    $ pydozeoff -dp 8080
+    $ pydozeoff -d
 
 
 Point the browser to http://localhost:8080 to see a plain HTML document. It
@@ -140,7 +140,7 @@ First, create a file ``slides/first.html`` that looks like this::
         <p>Slide notes.</p>
     </div>
 
-Also, modify the ``SLIDES`` setting in ``slideshow.py``::
+Modify the ``SLIDES`` setting in ``slideshow.py``::
 
     SLIDES = slides(
         simple("first.html"),

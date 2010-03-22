@@ -63,13 +63,13 @@ class Element(object):
     def get_parent(self):
         return self._parent
 
-    def get_name(self):
+    def get_path(self):
         if not self._parent:
             return self._name
-        return "%s/%s" % (self.parent.name, self._name)
+        return "%s/%s" % (self.parent.path, self._name)
 
     parent = property(get_parent, set_parent)
-    name   = property(get_name)
+    path   = property(get_path)
 
 
 class Section(Element):

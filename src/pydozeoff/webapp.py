@@ -4,6 +4,8 @@
 Provides a web interface to generate and serve a presentation.
 """
 
+import os
+
 from bottle import route, send_file, run, debug
 
 from pydozeoff.template import template_engine
@@ -24,7 +26,7 @@ def index():
     slides = []
     for slide in settings["SLIDES"]:
         context = {}
-        slide_filename = _get_slide_template(slide.name)
+        slide_filename = _get_slide_template(slide.path)
         context["content"] = template_engine.render(slide_filename, slide.options)
         context.update(slide.options)
         slides.append(context)
@@ -51,6 +53,6 @@ def _get_slideshow_template():
     return "%(THEMES_DIR)s/template.html" % settings
 
 def _get_slide_template(slide_partial_path):
-    """Returns the path for the relative.
+    """Returns the path for the given relative path.
     """
-    return "%s/%s" % (settings["SLIDES_DIR"], slide_partial_path)
+    return os.path.normpath("%s/%s" % (settings["SLIDES_DIR"], slide_partial_path))

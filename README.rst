@@ -28,6 +28,7 @@ Features
 * Configurable slide directory structure with support for nested subdirectories
 * Uses `S5`_ template model by default, but you can easily make it compatible
   with virtually any HTML-based presentation engine
+* Tested on: Linux, Windows
 
 
 Dependencies

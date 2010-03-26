@@ -8,13 +8,13 @@ from setuptools import setup, find_packages
 
 setup(
     name = "pydozeoff",
-    version = "0.1.1",
+    version = "0.1.2",
     author = "Daniel Fernandes Martins",
     author_email = 'daniel@destaquenet.com',
     url = "http://github.com/danielfm/pydozeoff",
     description = "Web-based presentation engine for programmers",
     license = "BSD",
-    keywords = "web presentation slideshow talk engine python s5",
+    keywords = ["web", "presentation", "slideshow", "talk", "engine", "python", "s5"],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "Environment :: Console",

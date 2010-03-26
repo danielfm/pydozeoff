@@ -21,7 +21,7 @@ class Jinja2TemplateEngine(object):
         if not self.initialized:
             self.initialized = True
             self.env =  Environment(
-                loader      = FileSystemLoader(settings["ROOT_DIR"]),
+                loader      = FileSystemLoader(settings["ROOT_DIR"], encoding=settings["ENCODING"]),
                 extensions  = settings["TEMPLATE_ENGINE_EXTENSIONS"],
                 auto_reload = settings["DEBUG_MODE"],
             )

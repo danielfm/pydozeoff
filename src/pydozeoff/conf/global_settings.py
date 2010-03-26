@@ -20,6 +20,8 @@ THEME        = "default"
 CONTROL_VIS  = "hidden"
 DEFAULT_VIEW = "slideshow"
 
+ENCODING = "utf-8"
+
 # Syntax highlight settings
 SYNTAX_HIGHLIGHT_OPTIONS = {
     "style": "default",

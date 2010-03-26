@@ -12,10 +12,14 @@ from pydozeoff.template import template_engine
 from pydozeoff.conf import settings
 
 
+MEDIA_NAMESPACE = "/media"
+THEME_NAMESPACE = "/theme"
+
+
 def start(port=8080, debug_mode=False):
     """Starts the server.
     """
-    if debug_mode: debug(True)
+    debug(debug_mode)
     run(host="0.0.0.0", port=port, reloader=debug_mode)
 
 
@@ -33,14 +37,14 @@ def index():
     return template_engine.render(_get_slideshow_template(), locals())
 
 
-@route('/media/(?P<filename>.+)')
+@route("%s/(?P<filename>.+)" % MEDIA_NAMESPACE)
 def serve_media(filename):
     """Serves static files from the media directory.
     """
     send_file(filename, root="%(ROOT_DIR)s/%(MEDIA_DIR)s" % settings)
 
 
-@route('/theme/(?P<filename>.+)')
+@route("%s/(?P<filename>.+)" % THEME_NAMESPACE)
 def serve_template_media(filename):
     """Serves static files from the theme directory.
     """
@@ -55,4 +59,5 @@ def _get_slideshow_template():
 def _get_slide_template(slide_partial_path):
     """Returns the path for the given relative path.
     """
-    return os.path.normpath("%s/%s" % (settings["SLIDES_DIR"], slide_partial_path))
+    path = "%s/%s" % (settings["SLIDES_DIR"], slide_partial_path)
+    return os.path.normpath(path).replace(os.sep, "/")

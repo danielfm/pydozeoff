@@ -19,9 +19,9 @@ def main():
     """Entry point for the command line tool.
     """
     parser, options = _get_cmdline_options()
-    if options.create:
+    if options.presentation_name:
         _create_presentation(parser, options)
-    elif options.build:
+    elif options.output_dir:
         _build_presentation(parser, options)
     else:
         _serve_presentation(parser, options)
@@ -31,8 +31,10 @@ def _create_presentation(parser, options):
     """Create a new presentation.
     """
     module_dir = os.path.dirname(__file__)
-    shutil.copytree("%s/conf/slideshow_template" % module_dir, options.create)
-    print >> sys.stderr, "Presentation '%s' created successfuly" % options.create
+    name = options.presentation_name
+
+    shutil.copytree("%s/conf/slideshow_template" % module_dir, name)
+    print >> sys.stderr, "Presentation '%s' created successfuly" % name
 
 
 def _build_presentation(parser, options):
@@ -41,34 +43,36 @@ def _build_presentation(parser, options):
     _check_for_settings(parser, options)
     _prepare_env(options)
 
+    out = options.output_dir
+
     from pydozeoff import webapp
     settings = webapp.settings
 
     # Sanity checks
-    if os.path.exists(options.build):
-        if os.path.isfile(options.build):
-            print >> sys.stderr, "Output directory '%s' must not be a file" % options.build
+    if os.path.exists(out):
+        if os.path.isfile(out):
+            print >> sys.stderr, "Output directory '%s' must not be a file" % out
             sys.exit(1)
-        elif os.path.isdir(options.build):
-            print >> sys.stderr, "Output directory '%s' must not already exist" % options.build
+        elif os.path.isdir(out):
+            print >> sys.stderr, "Output directory '%s' must not already exist" % out
             sys.exit(1)
 
     # Copy theme
     theme_from = "%s/%s/%s" % (options.slideshow_path, settings["THEMES_DIR"], settings["THEME"])
-    theme_to   = "%s%s" % (options.build, webapp.THEME_NAMESPACE)
+    theme_to   = "%s%s" % (out, webapp.THEME_NAMESPACE)
     shutil.copytree(theme_from, theme_to)
 
     # Copy media
     media_from = "%s/%s" % (options.slideshow_path, settings["MEDIA_DIR"])
-    media_to   = "%s%s" % (options.build, webapp.MEDIA_NAMESPACE)
+    media_to   = "%s%s" % (out, webapp.MEDIA_NAMESPACE)
     shutil.copytree(media_from, media_to)
 
     # Presentation HTML
-    out = open("%s/index.html" % options.build, mode="w+")
-    out.write(webapp.index().encode(settings["ENCODING"]))
-    out.close()
+    html = open("%s/index.html" % out, mode="w+")
+    html.write(webapp.index().encode(settings["ENCODING"]))
+    html.close()
 
-    print >> sys.stderr, "Offline version generated at '%s'" % options.build
+    print >> sys.stderr, "Offline version generated at '%s'" % out
 
 
 def _serve_presentation(parser, options):
@@ -78,7 +82,7 @@ def _serve_presentation(parser, options):
     _prepare_env(options)
 
     from pydozeoff import webapp
-    webapp.start(port=options.server_port, debug_mode=options.debug)
+    webapp.start(port=options.port, debug_mode=options.debug)
 
 
 def _check_for_settings(parser, options):
@@ -103,7 +107,7 @@ def _get_cmdline_options():
     """Parses command line options.
     """
     import optparse
-    parser = optparse.OptionParser()
+    parser = optparse.OptionParser(version="%prog " + __version__)
 
     parser.add_option("--slideshow-path", "-s", default=".",
         help="path to the presentation root directory (the one with a "
@@ -113,19 +117,19 @@ def _get_cmdline_options():
     build = optparse.OptionGroup(parser, "Starting/building presentations")
     parser.add_option_group(build)
 
-    build.add_option("--create", "-c", default="",
-        help="start a new presentation")
-    build.add_option("--build", "-b", default="",
-        help="create offline version of a presentation at the given directory")
+    build.add_option("--create", "-c", dest="presentation_name", default="",
+        help="start a new presentation at PRESENTATION_NAME directory")
+    build.add_option("--build", "-b", dest="output_dir", default="",
+        help="create offline version of a presentation at OUTPUT_DIR")
 
     # Serve presentation
     serve = optparse.OptionGroup(parser, "Serving presentations")
     parser.add_option_group(serve)
 
-    serve.add_option("--server-port", "-p", default="8080",
-        help="port used by the webserver")
+    serve.add_option("--server-port", "-p", dest="port", default="8080",
+        help="serve the presentation via HTTP at the given PORT")
     serve.add_option("--debug", "-d", action="store_true", default=False,
-        help="start server in debug mode")
+        help="whether the HTTP server should start in debug mode")
 
     return (parser, parser.parse_args()[0])
 

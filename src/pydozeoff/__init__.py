@@ -132,6 +132,3 @@ def _get_cmdline_options():
         help="whether the HTTP server should start in debug mode")
 
     return (parser, parser.parse_args()[0])
-
-
-    return (parser, parser.parse_args()[0])

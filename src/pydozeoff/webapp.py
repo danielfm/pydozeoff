@@ -6,7 +6,7 @@ Provides a web interface to generate and serve a presentation.
 
 import os
 
-from bottle import route, send_file, run, debug
+from flask import Flask, send_from_directory
 
 from pydozeoff.template import template_engine
 from pydozeoff.conf import settings
@@ -15,15 +15,15 @@ from pydozeoff.conf import settings
 MEDIA_NAMESPACE = "/media"
 THEME_NAMESPACE = "/theme"
 
+app = Flask(__name__.split(".")[0])
 
 def start(port=8080, debug_mode=False):
     """Starts the server.
     """
-    debug(debug_mode)
-    run(host="0.0.0.0", port=port, reloader=debug_mode)
+    app.debug = debug_mode
+    app.run(host="0.0.0.0", port=port, use_reloader=debug_mode)
 
-
-@route("/")
+@app.route("/")
 def index():
     """Assembles the presentation based on the slideshow settings.
     """
@@ -37,19 +37,19 @@ def index():
     return template_engine.render(_get_slideshow_template(), locals())
 
 
-@route("%s/(?P<filename>.+)" % MEDIA_NAMESPACE)
-def serve_media(filename):
+@app.route("%s/<path:file_path>" % MEDIA_NAMESPACE)
+def serve_media(file_path):
     """Serves static files from the media directory.
     """
-    send_file(filename, root="%(ROOT_DIR)s/%(MEDIA_DIR)s" % settings)
+    root_dir = os.path.abspath("%(ROOT_DIR)s/%(MEDIA_DIR)s" % settings)
+    return send_from_directory(root_dir, file_path)
 
-
-@route("%s/(?P<filename>.+)" % THEME_NAMESPACE)
-def serve_template_media(filename):
+@app.route("%s/<path:file_path>" % THEME_NAMESPACE)
+def serve_theme(file_path):
     """Serves static files from the theme directory.
     """
-    send_file(filename, root="%(ROOT_DIR)s/%(THEMES_DIR)s/%(THEME)s" % settings)
-
+    root_dir = os.path.abspath("%(ROOT_DIR)s/%(THEMES_DIR)s/%(THEME)s" % settings)
+    return send_from_directory(root_dir, file_path)
 
 def _get_slideshow_template():
     """Returns the slideshow template file.

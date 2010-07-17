@@ -1,6 +1,10 @@
 Changelog
 =========
 
+**Version 0.1.3** *(July XX, 2010)*
+
+* Replaced `Bottle`_ with `Flask`_;
+
 **Version 0.1.2** *(March 26, 2010)*
 
 * Normalized slide paths.
@@ -15,3 +19,6 @@ Changelog
 **Version 0.1.0** *(March 15, 2010)*
 
 * First (broken :-) public release.
+
+.. _Bottle: http://bottle.paws.de/
+.. _Flask: http://flask.pocoo.org/

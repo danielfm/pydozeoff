@@ -8,7 +8,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "pydozeoff",
-    version = "0.1.2",
+    version = "0.1.3",
     author = "Daniel Fernandes Martins",
     author_email = 'daniel@destaquenet.com',
     url = "http://github.com/danielfm/pydozeoff",
@@ -33,7 +33,7 @@ setup(
     ],
 
     # Dependencies
-    install_requires = ["bottle>=0.6", "Jinja2>=2.3", "Pygments>=1.3"],
+    install_requires = ["Flask>=0.5", "Pygments>=1.3"],
 
     # Executable scripts
     entry_points = {

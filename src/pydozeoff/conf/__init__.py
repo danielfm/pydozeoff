@@ -28,7 +28,6 @@ class LazySettings(dict):
             self._copy_members(_slideshow_settings)
             self._copy_env()
 
-
     def _copy_members(self, module):
         """Copies public members from a module to this settings object.
         """

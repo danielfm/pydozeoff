@@ -126,7 +126,7 @@ def _get_cmdline_options():
     serve = optparse.OptionGroup(parser, "Serving presentations")
     parser.add_option_group(serve)
 
-    serve.add_option("--server-port", "-p", dest="port", default="8080",
+    serve.add_option("--server-port", "-p", dest="port", type="int", default="8080",
         help="serve the presentation via HTTP at the given PORT")
     serve.add_option("--debug", "-d", action="store_true", default=False,
         help="whether the HTTP server should start in debug mode")

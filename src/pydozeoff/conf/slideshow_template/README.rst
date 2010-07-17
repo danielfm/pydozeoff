@@ -39,7 +39,7 @@ Dependencies
 * `Python`_ 2.5+
 * `Jinja2`_ template engine
 * `Pygments`_ syntax highlighter
-* `Bottle`_ web framework
+* `Flask`_ microframework
 
 
 Usage
@@ -312,5 +312,5 @@ I don't have any. Sorry.
 .. _Python: http://python.org/
 .. _S5: http://meyerweb.com/eric/tools/s5/
 .. _Jinja2: http://jinja.pocoo.org/2/
-.. _Bottle: http://bottle.paws.de/
+.. _Flask: http://flask.pocoo.org/
 .. _Pygments: http://pygments.org/

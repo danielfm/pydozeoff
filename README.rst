@@ -1,6 +1,9 @@
 pydozeoff
 =========
 
+pydozeoff is a web application written in `Python`_ that generates web-based
+presentations.
+
 As a Linux user, I don't have access to so called "professional" presentation
 softwares such as Apple Keynote or MS PowerPoint. OpenOffice Impress used to be
 my first choice, but I gave up using it since it's a memory/processor hog for
@@ -11,7 +14,7 @@ perfect fit, except for the one-big-fat-presentation-html thing and the lack of
 syntax highlighting.
 
 This is what I'm trying to solve with this project. So, in other words,
-pydozeoff is a web-based presentation engine for programmers.
+pydozeoff is just a web-based presentation engine for programmers.
 
 
 :Author: Daniel Fernandes Martins <daniel@destaquenet.com>
@@ -27,8 +30,7 @@ Features
 * Play nice with version control systems
 * Configurable slide directory structure with support for nested subdirectories
 * Uses `S5`_ template model by default, but you can easily make it compatible
-  with virtually any HTML-based presentation engine
-* Tested on: Linux, Windows
+  with virtually any web-based presentation engine
 
 
 Dependencies
@@ -37,7 +39,7 @@ Dependencies
 * `Python`_ 2.5+
 * `Jinja2`_ template engine
 * `Pygments`_ syntax highlighter
-* `Flask`_ web framework
+* `Flask`_ microframework
 
 
 Usage
@@ -55,8 +57,8 @@ will create a ``presentation_name`` folder in the working directory. This is
 what you'll find there:
 
 media/
-   All files placed here are served by the web server under ``/media/``. For
-   example, you can access ``media/company_logo.png`` at
+   All files placed here are served by the web server under the ``/media/``
+   namespace. For example, you can access ``company_logo.png`` at
    http://host:port/media/company_logo.png.
 
 slides/
@@ -92,8 +94,8 @@ To start the presentation in debug mode::
 
 
 This allows you to modify presentation's settings - and slides - and see the
-results right away, without the need to restart the web server manually. It
-also prints full stacktrace messages in case of errors.
+results right away, without the need to restart the web server. It also prints
+full stacktrace messages in case of errors.
 
 All the previous commands will only work if you run ``pydozeoff`` from the
 presentation root directory. Use ``-s <DIRECTORY>`` if you need to start
@@ -114,7 +116,7 @@ the presentation, but here's a common workflow::
     $ cd /my/workspace
     $ pydozeoff -c my_presentation
     $ cd my_presentation
-    $ pydozeoff -d
+    $ pydozeoff -dp 8080
 
 
 Point the browser to http://localhost:8080 to see a plain HTML document. It
@@ -141,7 +143,7 @@ First, create a file ``slides/first.html`` that looks like this::
         <p>Slide notes.</p>
     </div>
 
-Modify the ``SLIDES`` setting in ``slideshow.py``::
+Also, modify the ``SLIDES`` setting in ``slideshow.py``::
 
     SLIDES = slides(
         simple("first.html"),
@@ -202,8 +204,8 @@ for more information)::
 Dividing slides into sections
 `````````````````````````````
 
-For medium to large-sized presentations, you might want to split slides into
-sections::
+For medium to large-sized presentations, you might want to separate slides
+into sections::
 
     SLIDES = slides(
         simple("first.html"),       # Points to: slides/first.html
@@ -256,9 +258,6 @@ information)::
         "my_test": my_test_function,     # In your slide: {{ VALUE is my_test }}
     }
 
-
-The `built-in filters and tests <http://jinja.pocoo.org/2/documentation/templates#list-of-builtin-filters>`_
-also work as expected.
 
 Template inheritance
 ````````````````````

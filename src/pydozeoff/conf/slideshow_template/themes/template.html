@@ -47,7 +47,7 @@
 <div class="presentation">
 
 {% for slide in slides %}
-<div class="slide {{ slide.classes }}">
+<div class="slide {{ slide.classes }} {{ slide.extra_classes }}">
     {{ slide.content }}
 </div>
 {% endfor %}

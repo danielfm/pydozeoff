@@ -1,7 +1,7 @@
 Changelog
 =========
 
-**Version 0.1.3** *(July XX, 2010)*
+**Version 0.1.3** *(July 18, 2010)*
 
 * Replaced `Bottle`_ with `Flask`_;
 
